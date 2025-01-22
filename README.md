@@ -276,6 +276,120 @@ public class MainGenerator {
 
 ```
 
-### java命令行开发
+### java命令行开发（基于Picocli开发）
+> 1.引入依赖
+```angular2html
+<!-- https://picocli.info -->
+<dependency>
+    <groupId>info.picocli</groupId>
+    <artifactId>picocli</artifactId>
+    <version>4.7.5</version>
+</dependency>
+
+```
+> 2. 创建命令执行器类
+```angular2html
+
+```
+> 3. 生成generate子命令
+```angular2html
+package com.Fatsnake.cli.command;
+
+import cn.hutool.core.bean.BeanUtil;
+import com.Fatsnake.generator.MainGenerator;
+import com.Fatsnake.model.MainTemplateConfig;
+import lombok.Data;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import java.util.concurrent.Callable;
+
+@Command(name = "generate", description = "生成代码", mixinStandardHelpOptions = true)
+@Data
+public class GenerateCommand implements Callable<Integer> {
+
+    @Option(names = {"-l", "--loop"}, arity = "0..1", description = "是否循环", interactive = true, echo = true)
+    private boolean loop;
+
+    @Option(names = {"-a", "--author"}, arity = "0..1", description = "作者", interactive = true, echo = true)
+    private String author = "yupi";
+
+    @Option(names = {"-o", "--outputText"}, arity = "0..1", description = "输出文本", interactive = true, echo = true)
+    private String outputText = "sum = ";
+
+    public Integer call() throws Exception {
+        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
+        BeanUtil.copyProperties(this, mainTemplateConfig);
+        System.out.println("配置信息：" + mainTemplateConfig);
+        MainGenerator.doGenerate(mainTemplateConfig);
+        return 0;
+    }
+}
+
+```
+> 4. 生成list子命令
+```angular2html
+package com.Fatsnake.cli.command;
+
+import cn.hutool.core.io.FileUtil;
+import picocli.CommandLine.Command;
+
+import java.io.File;
+import java.util.List;
+
+@Command(name = "list", description = "查看文件列表", mixinStandardHelpOptions = true)
+public class ListCommand implements Runnable {
+
+    public void run() {
+        String projectPath = System.getProperty("user.dir");
+        // 整个项目的根路径
+        File parentFile = new File(projectPath).getParentFile();
+        // 输入路径
+        String inputPath = new File(parentFile, "yuzi-generator-demo-projects/acm-template").getAbsolutePath();
+        List<File> files = FileUtil.loopFiles(inputPath);
+        for (File file : files) {
+            System.out.println(file);
+        }
+    }
+
+}
+
+
+```
+> 5. 生成config子命令
+```angular2html
+package com.Fatsnake.cli.command;
+
+import cn.hutool.core.util.ReflectUtil;
+import com.Fatsnake.model.MainTemplateConfig;
+import picocli.CommandLine.Command;
+
+import java.lang.reflect.Field;
+
+@Command(name = "config", description = "查看参数信息", mixinStandardHelpOptions = true)
+public class ConfigCommand implements Runnable {
+
+    public void run() {
+        // 实现 config 命令的逻辑
+        System.out.println("查看参数信息");
+
+//        // 获取要打印属性信息的类
+//        Class<?> myClass = MainTemplateConfig.class;
+//        // 获取类的所有字段
+//        Field[] fields = myClass.getDeclaredFields();
+
+        Field[] fields = ReflectUtil.getFields(MainTemplateConfig.class);
+
+        // 遍历并打印每个字段的信息
+        for (Field field : fields) {
+            System.out.println("字段名称：" + field.getName());
+            System.out.println("字段类型：" + field.getType());
+//            System.out.println("Modifiers: " + java.lang.reflect.Modifier.toString(field.getModifiers()));
+            System.out.println("---");
+        }
+    }
+}
+
+
+```
 
 
