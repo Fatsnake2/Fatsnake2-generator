@@ -1,6 +1,6 @@
-package com.Fatsnake.generator;
+package com.Fatsnake.maker.generator.file;
 
-import com.Fatsnake.model.MainTemplateConfig;
+import com.Fatsnake.maker.model.Datamodel;
 import freemarker.template.TemplateException;
 
 import java.io.File;
@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * 核心生成器
  */
-public class MainGenerator {
+public class FileGenerator {
 
     /**
      * 生成
@@ -26,19 +26,20 @@ public class MainGenerator {
         String inputPath = new File(parentFile, "Fatsnake-generator-demo-projects/acm-template").getAbsolutePath();
         String outputPath = projectPath;
         // 生成静态文件
-        StaticGenerator.copyFilesByRecursive(inputPath, outputPath);
+        // 生成静态文件
+        StaticFileGenerator.copyFilesByHutool(inputPath, outputPath);
         // 生成动态文件
         String inputDynamicFilePath = projectPath + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
         String outputDynamicFilePath = outputPath + File.separator + "acm-template/src/com/Fatsnake/acm/MainTemplate.java";
-        DynamicGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
+        DynamicFileGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
     }
 
     public static void main(String[] args) throws TemplateException, IOException {
-        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
-        mainTemplateConfig.setAuthor("Fatsnake");
-        mainTemplateConfig.setLoop(false);
-        mainTemplateConfig.setOutputText("求和结果：");
-        doGenerate(mainTemplateConfig);
+        Datamodel datamodel = new Datamodel();
+        datamodel.setAuthor("Fatsnake");
+        datamodel.setLoop(false);
+        datamodel.setOutputText("求和结果：");
+        doGenerate(datamodel);
     }
 }
 
