@@ -76,6 +76,8 @@ public class MetaValidator {
         if (StrUtil.isEmpty(inputRootPath)) {
             fileConfig.setInputRootPath(defaultInputRootPath);
         }
+
+
         // outputRootPath：默认为当前路径下的 generated
         String outputRootPath = fileConfig.getOutputRootPath();
         String defaultOutputRootPath = "generated";
