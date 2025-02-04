@@ -2,7 +2,7 @@
 .idea
 Fatsnake-generator.iml
 Fatsnake-generator-basic.iml
-
+application-local.yml
 
 
 ### Java template

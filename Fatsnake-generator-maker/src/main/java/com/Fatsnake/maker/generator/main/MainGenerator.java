@@ -128,8 +128,9 @@ import java.io.IOException;
 public class MainGenerator extends GenerateTemplate {
 
     @Override
-    protected void buildDist(String outputPath, String sourceCopyDestPath, String jarPath, String shellOutputFilePath) {
+    protected String buildDist(String outputPath, String sourceCopyDestPath, String jarPath, String shellOutputFilePath) {
         System.out.println("不要给我输出 dist 啦！");
+        return "";
     }
 //    public static void main(String[] args) throws IOException, TemplateException , InterruptedException {
 //        MainGenerator mainGenerator = new MainGenerator();

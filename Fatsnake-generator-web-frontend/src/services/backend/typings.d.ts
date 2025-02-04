@@ -1,322 +1,374 @@
 declare namespace API {
-  type BaseResponseBoolean = {
+  type BaseResponseBoolean_ = {
     code?: number;
     data?: boolean;
     message?: string;
   };
-  type BaseResponseGeneratorVO = {
+
+  type BaseResponseGeneratorVO_ = {
     code?: number;
     data?: GeneratorVO;
     message?: string;
   };
-  type BaseResponseLoginUserVO = {
+
+  type BaseResponseLoginUserVO_ = {
     code?: number;
     data?: LoginUserVO;
     message?: string;
   };
-  type BaseResponseLong = {
+
+  type BaseResponseLong_ = {
+    code?: number;
+    data?: number;
+    message?: string;
+  };
+
+  type BaseResponsePageGenerator_ = {
+    code?: number;
+    data?: PageGenerator_;
+    message?: string;
+  };
+
+  type BaseResponsePageGeneratorVO_ = {
+    code?: number;
+    data?: PageGeneratorVO_;
+    message?: string;
+  };
+
+  type BaseResponsePageUser_ = {
+    code?: number;
+    data?: PageUser_;
+    message?: string;
+  };
+
+  type BaseResponsePageUserVO_ = {
+    code?: number;
+    data?: PageUserVO_;
+    message?: string;
+  };
+
+  type BaseResponseString_ = {
     code?: number;
     data?: string;
     message?: string;
   };
-  type BaseResponsePageGenerator = {
-    code?: number;
-    data?: PageGenerator;
-    message?: string;
-  };
-  type BaseResponsePageGeneratorVO = {
-    code?: number;
-    data?: PageGeneratorVO;
-    message?: string;
-  };
-  type BaseResponsePageUser = {
-    code?: number;
-    data?: PageUser;
-    message?: string;
-  };
-  type BaseResponsePageUserVO = {
-    code?: number;
-    data?: PageUserVO;
-    message?: string;
-  };
-  type BaseResponseString = {
-    code?: number;
-    data?: string;
-    message?: string;
-  };
-  type BaseResponseUser = {
+
+  type BaseResponseUser_ = {
     code?: number;
     data?: User;
     message?: string;
   };
-  type BaseResponseUserVO = {
+
+  type BaseResponseUserVO_ = {
     code?: number;
     data?: UserVO;
     message?: string;
   };
+
   type DeleteRequest = {
-    id?: string;
+    id?: number;
   };
+
   type FileConfig = {
+    files?: FileInfo[];
     inputRootPath?: string;
     outputRootPath?: string;
     sourceRootPath?: string;
     type?: string;
-    files?: FileInfo[];
   };
+
   type FileInfo = {
+    condition?: string;
+    files?: FileInfo[];
+    generateType?: string;
+    groupKey?: string;
+    groupName?: string;
     inputPath?: string;
     outputPath?: string;
     type?: string;
-    generateType?: string;
-    condition?: string;
-    groupKey?: string;
-    groupName?: string;
   };
+
   type Generator = {
-    id?: string;
-    name?: string;
-    description?: string;
-    basePackage?: string;
-    version?: string;
     author?: string;
-    tags?: string;
-    picture?: string;
-    fileConfig?: string;
-    modelConfig?: string;
-    distPath?: string;
-    status?: number;
-    userId?: string;
+    basePackage?: string;
     createTime?: string;
-    updateTime?: string;
+    description?: string;
+    distPath?: string;
+    fileConfig?: string;
+    id?: number;
     isDelete?: number;
-  };
-  type GeneratorAddRequest = {
+    modelConfig?: string;
     name?: string;
-    description?: string;
-    basePackage?: string;
-    version?: string;
-    author?: string;
-    tags?: string[];
     picture?: string;
-    fileConfig?: FileConfig;
-    modelConfig?: ModelConfig;
-    distPath?: string;
     status?: number;
-  };
-  type GeneratorEditRequest = {
-    id?: string;
-    name?: string;
-    description?: string;
-    basePackage?: string;
+    tags?: string;
+    updateTime?: string;
+    userId?: number;
     version?: string;
+  };
+
+  type GeneratorAddRequest = {
     author?: string;
-    tags?: string[];
-    picture?: string;
+    basePackage?: string;
+    description?: string;
+    distPath?: string;
     fileConfig?: FileConfig;
     modelConfig?: ModelConfig;
-    distPath?: string;
+    name?: string;
+    picture?: string;
+    status?: number;
+    tags?: string[];
+    version?: string;
   };
+
+  type GeneratorEditRequest = {
+    author?: string;
+    basePackage?: string;
+    description?: string;
+    distPath?: string;
+    fileConfig?: FileConfig;
+    id?: number;
+    modelConfig?: ModelConfig;
+    name?: string;
+    picture?: string;
+    tags?: string[];
+    version?: string;
+  };
+
   type GeneratorQueryRequest = {
+    author?: string;
+    basePackage?: string;
     current?: number;
+    description?: string;
+    distPath?: string;
+    id?: number;
+    name?: string;
+    notId?: number;
+    orTags?: string[];
     pageSize?: number;
+    searchText?: string;
     sortField?: string;
     sortOrder?: string;
-    id?: string;
-    notId?: string;
-    searchText?: string;
-    tags?: string[];
-    orTags?: string[];
-    userId?: string;
-    name?: string;
-    description?: string;
-    basePackage?: string;
-    version?: string;
-    author?: string;
-    distPath?: string;
     status?: number;
+    tags?: string[];
+    userId?: number;
+    version?: string;
   };
+
   type GeneratorUpdateRequest = {
-    id?: string;
-    name?: string;
-    description?: string;
-    basePackage?: string;
-    version?: string;
     author?: string;
-    tags?: string[];
-    picture?: string;
-    fileConfig?: FileConfig;
-    modelConfig?: ModelConfig;
+    basePackage?: string;
+    description?: string;
     distPath?: string;
+    fileConfig?: FileConfig;
+    id?: number;
+    modelConfig?: ModelConfig;
+    name?: string;
+    picture?: string;
     status?: number;
+    tags?: string[];
+    version?: string;
   };
+
   type GeneratorVO = {
-    id?: string;
-    name?: string;
-    description?: string;
-    basePackage?: string;
-    version?: string;
     author?: string;
-    tags?: string[];
-    picture?: string;
-    fileConfig?: FileConfig;
-    modelConfig?: ModelConfig;
-    distPath?: string;
-    status?: number;
-    userId?: string;
+    basePackage?: string;
     createTime?: string;
+    description?: string;
+    distPath?: string;
+    fileConfig?: FileConfig;
+    id?: number;
+    modelConfig?: ModelConfig;
+    name?: string;
+    picture?: string;
+    status?: number;
+    tags?: string[];
     updateTime?: string;
     user?: UserVO;
+    userId?: number;
+    version?: string;
   };
-  type getGeneratorVOByIdParams = {
-    id: string;
+
+  type getGeneratorVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
   };
-  type getUserByIdParams = {
-    id: string;
+
+  type getUserByIdUsingGETParams = {
+    /** id */
+    id?: number;
   };
-  type getUserVOByIdParams = {
-    id: string;
+
+  type getUserVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
   };
+
   type LoginUserVO = {
-    id?: string;
-    userName?: string;
+    createTime?: string;
+    id?: number;
+    updateTime?: string;
     userAvatar?: string;
+    userName?: string;
     userProfile?: string;
     userRole?: string;
-    createTime?: string;
-    updateTime?: string;
   };
+
   type ModelConfig = {
     models?: ModelInfo[];
   };
+
   type ModelInfo = {
-    fieldName?: string;
-    type?: string;
-    description?: string;
-    defaultValue?: Record<string, any>;
     abbr?: string;
+    allArgsStr?: string;
+    condition?: string;
+    defaultValue?: Record<string, any>;
+    description?: string;
+    fieldName?: string;
     groupKey?: string;
     groupName?: string;
-    condition?: string;
-    allArgsStr?: string;
+    models?: ModelInfo[];
+    type?: string;
   };
+
   type OrderItem = {
-    column?: string;
     asc?: boolean;
+    column?: string;
   };
-  type PageGenerator = {
+
+  type PageGenerator_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
     records?: Generator[];
-    total?: string;
-    size?: string;
-    current?: string;
-    orders?: OrderItem[];
-    optimizeCountSql?: boolean;
     searchCount?: boolean;
-    optimizeJoinOfCountSql?: boolean;
-    countId?: string;
-    maxLimit?: string;
-    pages?: string;
+    size?: number;
+    total?: number;
   };
-  type PageGeneratorVO = {
+
+  type PageGeneratorVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
     records?: GeneratorVO[];
-    total?: string;
-    size?: string;
-    current?: string;
-    orders?: OrderItem[];
-    optimizeCountSql?: boolean;
     searchCount?: boolean;
-    optimizeJoinOfCountSql?: boolean;
-    countId?: string;
-    maxLimit?: string;
-    pages?: string;
+    size?: number;
+    total?: number;
   };
-  type PageUser = {
+
+  type PageUser_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
     records?: User[];
-    total?: string;
-    size?: string;
-    current?: string;
-    orders?: OrderItem[];
-    optimizeCountSql?: boolean;
     searchCount?: boolean;
-    optimizeJoinOfCountSql?: boolean;
-    countId?: string;
-    maxLimit?: string;
-    pages?: string;
+    size?: number;
+    total?: number;
   };
-  type PageUserVO = {
+
+  type PageUserVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
     records?: UserVO[];
-    total?: string;
-    size?: string;
-    current?: string;
-    orders?: OrderItem[];
-    optimizeCountSql?: boolean;
     searchCount?: boolean;
-    optimizeJoinOfCountSql?: boolean;
-    countId?: string;
-    maxLimit?: string;
-    pages?: string;
+    size?: number;
+    total?: number;
   };
-  type uploadFileParams = {
-    uploadFileRequest: UploadFileRequest;
+
+  type testDownloadFileUsingGETParams = {
+    /** filepath */
+    filepath?: string;
   };
-  type UploadFileRequest = {
+
+  type uploadFileUsingPOSTParams = {
     biz?: string;
   };
+
   type User = {
-    id?: string;
+    createTime?: string;
+    id?: number;
+    isDelete?: number;
+    updateTime?: string;
     userAccount?: string;
-    userPassword?: string;
-    userName?: string;
     userAvatar?: string;
+    userName?: string;
+    userPassword?: string;
     userProfile?: string;
     userRole?: string;
-    createTime?: string;
-    updateTime?: string;
-    isDelete?: number;
   };
+
   type UserAddRequest = {
-    userName?: string;
     userAccount?: string;
     userAvatar?: string;
+    userName?: string;
     userRole?: string;
   };
+
   type UserLoginRequest = {
     userAccount?: string;
     userPassword?: string;
   };
+
   type UserQueryRequest = {
     current?: number;
+    id?: number;
     pageSize?: number;
     sortField?: string;
     sortOrder?: string;
-    id?: string;
     userName?: string;
     userProfile?: string;
     userRole?: string;
   };
+
   type UserRegisterRequest = {
+    checkPassword?: string;
     userAccount?: string;
     userPassword?: string;
-    checkPassword?: string;
   };
+
   type UserUpdateMyRequest = {
-    userName?: string;
     userAvatar?: string;
+    userName?: string;
     userProfile?: string;
   };
+
   type UserUpdateRequest = {
-    id?: string;
-    userName?: string;
+    id?: number;
     userAvatar?: string;
+    userName?: string;
     userProfile?: string;
     userRole?: string;
   };
+
   type UserVO = {
-    id?: string;
-    userName?: string;
+    createTime?: string;
+    id?: number;
     userAvatar?: string;
+    userName?: string;
     userProfile?: string;
     userRole?: string;
-    createTime?: string;
+  };
+
+  type downloadGeneratorByIdUsingGETParams = {
+    /** id */
+    id?: string;
+  };
+
+  type testDownloadFileUsingGETParams = {
+    /** filepath */
+    filepath?: string;
   };
 }
